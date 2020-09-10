@@ -10,7 +10,7 @@ En la siguiente configuración usaremos un Jenkis local (desde docker) al cual l
 Para este proceso necesitaras lo siguiente:
 
 1. Llaves publica y privada ya generadas
-2. Minikube instalado en el nodo a usar como agente
+2. Minikube instalado en el nodo a usar como agente (NodoLocal)
 3. Docker instalado en el nodo a usar por le API
 
 ## Iniciando docker como imagen con su directorio
@@ -18,7 +18,7 @@ Para este proceso necesitaras lo siguiente:
 ```
 docker run -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
 ```
-![Entrada a Jenkins](images/LoginAdmin.png)
+![Entrada a Jenkins](media/LoginAdmin.png)
 
 ### Instalando Llaves de manera local
 
@@ -38,6 +38,26 @@ ssh -i .ssh/id_rsa alejandro@192.168.20.107
 
 ### Adicionando Credenciales y Nodo por SSH a Jenkins
 
+Antes de adicionar el agente es necesario instalar los plugins de SSH en Jekins para ello vamos
+al menu de instalación:
+
+![Menú instlacion Plugins](media/InstalaciónPlugins.png)
+
+acto seguido seleccionamos las aplicaciones que quermos instalar.
+
+![SHH Plugins](media/SSHPluginsInstalados.png)
+
+Luego se debe adicionar la llave privada en las credenciales de Jenkins
+
+![SSH Credencial Privada](media/AdicionandoLlavesSSH.png)
+
+Luego de esto no vamos a la configuración de los nodos, para adicionar el nodo local.
+
+![Configurar Nodo](media/ConfigNodes.png)
+
+Por último Creamos el Nodo local.
+
+![Configurando Nodo Local](media/ConfiguraciónNodoLocal.png)
 
 ## Configurando el API de Docker en Ubuntu 18.04
 
@@ -68,11 +88,14 @@ systemctl enable docker.socket
 systemctl resstart docker.service
 ```
 
-Para probar que API esta habilitado use:
+Para probar que API esta habilitado use de forma local:
 
 ```bash
-curl -X GET http://localhost:2375/images/json
+curl -X GET http://localhost:2375/media/json
 ```
+El anterior comando te arroja un listado de las imágenes disponibles en la máquina.
+
+## Corriendo un Projecto que Inicia el Minikube
 ## Referencias
 
 [Configuración de puerto API](https://riptutorial.com/es/docker/example/15951/habilitar-el-acceso-remoto-a-la-api-de-docker-en-linux-ejecutando-systemd)
