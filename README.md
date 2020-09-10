@@ -95,8 +95,14 @@ curl -X GET http://localhost:2375/media/json
 ```
 El anterior comando te arroja un listado de las imágenes disponibles en la máquina.
 
-## Corriendo un Projecto que Inicia el Minikube
+## Corriendo un Proyecto que Inicia el Minikube
+
+El NodoLocal **tiene por defecto instalado el minikube** sino sabes instalarlo [este proceso de Instalación](https://medium.com/@alejandroleon09/minikube-con-hyper-v-en-windows10-2f3fae956c3b) en Windows 10 te puede servir.
+
+
+
 ## Referencias
 
 [Configuración de puerto API](https://riptutorial.com/es/docker/example/15951/habilitar-el-acceso-remoto-a-la-api-de-docker-en-linux-ejecutando-systemd)
+
 [Instalacion Agente SSH](https://plugins.jenkins.io/ssh-agent/)
