@@ -5,8 +5,12 @@ pipeline{
     stages {
         stage('Start Minikube') {
             steps {
-                // Create namespace if it doesn't exist
                 sh("minikube start")
+            }
+        }
+         stage('Stop Minikube') {
+            steps {
+                sh("minikube delete")
             }
         }
 

@@ -13,6 +13,8 @@ Para este proceso necesitaras lo siguiente:
 2. Minikube instalado en el nodo a usar como agente (NodoLocal)
 3. Docker instalado en el nodo a usar por le API
 
+Todos los comandos fueron probados sobre Ubuntu 18.04.
+
 ## Iniciando docker como imagen con su directorio
 
 ```
@@ -99,10 +101,20 @@ El anterior comando te arroja un listado de las imágenes disponibles en la máq
 
 El NodoLocal **tiene por defecto instalado el minikube** sino sabes instalarlo [este proceso de Instalación](https://medium.com/@alejandroleon09/minikube-con-hyper-v-en-windows10-2f3fae956c3b) en Windows 10 te puede servir.
 
+### Construcción con Lineas de Producción.
 
+Los **Pipelines** como son conocidos en inglés son scripts en groovy que permiten automaizar por pasos los procesos de construcción del sofotware.
+En este caso el [Jenkinsfile](Jenkinsfile) contiene los pasos necesarios para este ejemplo.
+
+1. Crear un proyecto de tipo pipeline.
+
+   En este Tarea configurar el pipeline desde un Un SCM (Software Configuration Managemenent) y seleccionar a git como administrador.
+   
 
 ## Referencias
 
 [Configuración de puerto API](https://riptutorial.com/es/docker/example/15951/habilitar-el-acceso-remoto-a-la-api-de-docker-en-linux-ejecutando-systemd)
 
 [Instalacion Agente SSH](https://plugins.jenkins.io/ssh-agent/)
+
+[Construcción con Pipelines](https://www.jenkins.io/solutions/pipeline/)
