@@ -13,6 +13,7 @@ pipeline{
                sh '''
                   kubectl apply -f https://git.io/k8s-wild-west
                   kubectl apply -f https://git.io/k8s-wild-west-destructive
+                  sleep 60
                   kubectl port-forward -n wildwest svc/wildwest 9090:8080
                   '''
            }
