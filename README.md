@@ -1,4 +1,4 @@
-# Minikube con Kafka y Trifecta desde Jenkins
+# Minikube con Docker desde Jenkins
 
 En la siguiente configuración usaremos un Jenkis local (desde docker) al cual le podremos configurar dos tipos de agente
 
@@ -109,7 +109,16 @@ En este caso el [Jenkinsfile](Jenkinsfile) contiene los pasos necesarios para es
 1. Crear un proyecto de tipo pipeline.
 
    En este Tarea configurar el pipeline desde un Un SCM (Software Configuration Managemenent) y seleccionar a git como administrador.
-   
+
+## Plugins a Usar en Visual Studio Code
+
+Se aconseja trabajar en parejas para complementar el proyecto y usar los siguientes plugins
+
+![Drawio Integration](media/drawio_integration.png)
+![Drawio Integration](media/Live_Share.png)
+
+
+
 
 ## Referencias
 
