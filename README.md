@@ -114,11 +114,24 @@ En este caso el [Jenkinsfile](Jenkinsfile) contiene los pasos necesarios para es
 
 Se aconseja trabajar en parejas para complementar el proyecto y usar los siguientes plugins
 
-![Drawio Integration](media/drawio_integration.png)
-![Drawio Integration](media/Live_Share.png)
+[![Drawio Integration](media/drawio_integration.png)](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio)
 
+ext install janjoerke.jenkins-pipeline-linter-connector
 
+[![Drawio Integration](media/Live_Share.png)](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
 
+ext install MS-vsliveshare.vsliveshare
+
+[![Jenkins Linter pluging](media/JenkinsLinter.png)](https://marketplace.visualstudio.com/items?itemName=janjoerke.jenkins-pipeline-linter-connector)
+
+Para **Validar** Jenkinsfiles
+
+ext install janjoerke.jenkins-pipeline-linter-connector
+
+Este plugin require unas configuraciones para alcazar el API de Jenkins, ademas del usuario y el passwor se debe definir las siguiente URLs:
+
+jenkins.pipeline.linter.connector.url: http://localhost:8080>/pipeline-model-converter/validate.
+jenkins.pipeline.linter.connector.crumbUrl : http://localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,%22:%22,//crumb).​
 
 ## Referencias
 

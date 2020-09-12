@@ -13,9 +13,16 @@ pipeline{
                sh '''
                   kubectl apply -f https://git.io/k8s-wild-west
                   kubectl apply -f https://git.io/k8s-wild-west-destructive
-                  sleep 60
                   kubectl port-forward -n wildwest svc/wildwest 9090:8080
                   '''
+               timeout(10) {
+                    waitUntil {
+                        script {
+                            def r = sh script: 'kubectl port-forward -n wildwest svc/wildwest 9090:8080', returnStdout: true
+                            return (r == 0);
+                        }
+                    }
+              }               
            }
         }
         //  stage('Stop Minikube') {
