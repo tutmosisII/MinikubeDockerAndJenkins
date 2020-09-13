@@ -7,11 +7,19 @@ En la siguiente configuración usaremos un Jenkis local (desde docker) al cual l
 
 **Nota:** Esta configuración no debe ser usada en un ambiente productivo ni accesible en línea. Esta pensada para un ambiente de pruebas controlado.
 
+Este proyecto simula una arquitectura similar a la que podríamos desplegar en un ambiente productivo de jenkins donde tenemos un agente **spot EC2** para realizar construcciones y tiene que desplegar en un **cluster de K8S**.
+
+La diferencia radica en que en este caso el cluster de k8s es un **minikube** desplegado dentro del mismo nodo "EC2" (en este caso tu propio PC).
+
+La imagen a continuación muestra un [esquema](jenkinsAgent.drawio) de lo que queremos lograr.
+
+![Digrama Despliegue](media/DeploymentDiagram.png)
+
 Para este proceso necesitaras lo siguiente:
 
 1. Llaves publica y privada ya generadas
 2. Minikube instalado en el nodo a usar como agente (NodoLocal)
-3. Docker instalado en el nodo a usar por le API
+3. Docker instalado en el nodo a usar por medio del API
 
 Todos los comandos fueron probados sobre Ubuntu 18.04.
 
@@ -63,7 +71,7 @@ Por último Creamos el Nodo local.
 
 ## Configurando el API de Docker en Ubuntu 18.04
 
-El archivo daemon.json del cual se encuentra un sinfin de documentación ya no suelte tener el mismo efecto en esta versión de ubuntu
+El archivo daemon.json del cual se encuentra un sinfin de documentación ya no suele tener el mismo efecto en esta versión de ubuntu
 
 Ahora para configurar el **Socket del API** en el puerot 2375 se debe modificar el siguiente archivo: /etc/systemd/system/sockets.target.wants/docker.socket adicionando otro **ListenStream** con el puerto deseado.
 
@@ -87,7 +95,7 @@ Una vez configurado se debe Habiliar el puerto y reiniciar el servicio de docker
 
 ```
 systemctl enable docker.socket
-systemctl resstart docker.service
+systemctl restart docker.service
 ```
 
 Para probar que API esta habilitado use de forma local:
@@ -99,7 +107,7 @@ El anterior comando te arroja un listado de las imágenes disponibles en la máq
 
 ## Corriendo un Proyecto que Inicia el Minikube
 
-El NodoLocal **tiene por defecto instalado el minikube** sino sabes instalarlo [este proceso de Instalación](https://medium.com/@alejandroleon09/minikube-con-hyper-v-en-windows10-2f3fae956c3b) en Windows 10 te puede servir.
+El NodoLocal **tiene por defecto instalado el minikube** sino sabes instalarlo [este proceso de Instalación](https://medium.com/@alejandroleon09/minikube-con-hyper-v-en-windows10-2f3fae956c3b) en Windows 10 te puede servir. También puedes intentar crear tu propio cluster [aquí](https://tutmosisii.wordpress.com/2018/10/10/kubernetes-cluster-con-vagrant/).
 
 ### Construcción con Lineas de Producción.
 
