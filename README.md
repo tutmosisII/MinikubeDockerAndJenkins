@@ -124,7 +124,7 @@ Se aconseja trabajar en parejas para complementar el proyecto y usar los siguien
 
 [![Drawio Integration](media/drawio_integration.png)](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio)
 
-ext install janjoerke.jenkins-pipeline-linter-connector
+ext install hediet.vscode-drawio
 
 [![Drawio Integration](media/Live_Share.png)](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
 
@@ -138,8 +138,8 @@ ext install janjoerke.jenkins-pipeline-linter-connector
 
 Este plugin require unas configuraciones para alcazar el API de Jenkins, ademas del usuario y el passwor se debe definir las siguiente URLs:
 
-jenkins.pipeline.linter.connector.url: http://localhost:8080>/pipeline-model-converter/validate.
-jenkins.pipeline.linter.connector.crumbUrl : http://localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,%22:%22,//crumb).​
+jenkins.pipeline.linter.covnnector.url: http://localhost:8080>/pipeline-model-converter/validate
+jenkins.pipeline.linter.connector.crumbUrl : http://localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,%22:%22,//crumb)
 
 ## Referencias
 
