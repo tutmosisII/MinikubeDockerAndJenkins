@@ -15,10 +15,10 @@ pipeline{
                   kubectl apply -f https://git.io/k8s-wild-west-destructive
                   kubectl port-forward -n wildwest svc/wildwest 9090:8080
                   '''
-               timeout(10) {
+               timeout(10) { // Cada 10 segundos se verificará el comando de envio de puertos
                     waitUntil {
                         script {
-                            def r = sh script: 'kubectl port-forward -n wildwest svc/wildwest 9090:8080', returnStdout: true
+                            def r = sh script: 'kubectl port-forward -n wildwest svc/wildwest 9090:8080 &', returnStdout: true
                             return (r == 0);
                         }
                     }

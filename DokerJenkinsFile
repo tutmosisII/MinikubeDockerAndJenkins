@@ -1,0 +1,28 @@
+pipeline{
+    agent{
+        label 'localms'
+    }
+    stages {
+        stage('Deploy Wild West K8'){
+           steps{
+               sh '''
+                  docker run -p 8580:80  -d nginxdemos/hello
+                  '''
+               timeout(10) { // Cada 10 segundos se verificará el comando de envio de puertos
+                    waitUntil {
+                        script {
+                            def r = sh script: 'curl -s -o /dev/null -I -w "%{http_code}" http://localhost:8580', returnStdout: true
+                            return (r == 200);
+                        }
+                    }
+              }               
+           }
+        }
+        stage("Container desciption"){
+            curl  -H "Content-Type: application/json" -d '{"Image":"nginxdemos/hello","ExposedPorts": {"8080/tcp": {"HostIp": "0.0.0.0","HostPort": "8600"}}}}' -X POST http://localhost:2375/containers/create
+
+        }
+
+    }
+   
+}
